@@ -1,0 +1,56 @@
+-- Create the database
+CREATE DATABASE CollegeDB;
+USE CollegeDB;
+
+-- Create the table for students
+CREATE TABLE Students (
+    StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    DateOfBirth DATE NOT NULL,
+    Gender ENUM('Male', 'Female', 'Other') NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    PhoneNumber VARCHAR(15),
+    Address TEXT,
+    EnrollmentDate DATE NOT NULL
+);
+
+-- Create the table for courses
+CREATE TABLE Courses (
+    CourseID INT AUTO_INCREMENT PRIMARY KEY,
+    CourseName VARCHAR(100) NOT NULL,
+    CourseCode VARCHAR(10) UNIQUE NOT NULL,
+    Credits INT NOT NULL,
+    Department VARCHAR(50) NOT NULL
+);
+
+-- Create the table for instructors
+CREATE TABLE Instructors (
+    InstructorID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    PhoneNumber VARCHAR(15),
+    Department VARCHAR(50) NOT NULL
+);
+
+-- Create the table for course assignments to instructors
+CREATE TABLE CourseAssignments (
+    AssignmentID INT AUTO_INCREMENT PRIMARY KEY,
+    CourseID INT NOT NULL,
+    InstructorID INT NOT NULL,
+    AssignmentDate DATE NOT NULL,
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    FOREIGN KEY (InstructorID) REFERENCES Instructors(InstructorID)
+);
+
+-- Create the table for enrollments
+CREATE TABLE Enrollments (
+    EnrollmentID INT AUTO_INCREMENT PRIMARY KEY,
+    StudentID INT NOT NULL,
+    CourseID INT NOT NULL,
+    EnrollmentDate DATE NOT NULL,
+    Grade CHAR(2),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
