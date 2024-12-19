@@ -29,24 +29,27 @@
 
 # Update Table Values:
   --------------------
-  **example**
-+----+----------+-----+
-| id | username | age |
-+----+----------+-----+
-|  1 | Santhosh |  22 |
-|  3 | sam      |  45 |
-|  8 | kumar    |  33 |
-+----+----------+-----+
 # update cmd
 update <table_name> set username='Murugan' where id=1;
-**output:**
-+----+----------+-----+
-| id | username | age |
-+----+----------+-----+
-|  1 | Murugan  |  22 |
-|  3 | sam      |  45 |
-|  8 | kumar    |  33 |
-+----+----------+-----+
+
+# Add the Row Data Insert
+  -----------------------
+  ## single row insert
+  insert into <table_name>(username,age) values('wel',44);
+   ## Insert Multiple Rows:
+   insert into <table_name>(username,age) values('wel',44), ('jeep', 54);
+  
+# Delete Table Data
+  ------------------
+  delete from <table_name> where id=9;
+
+# Table Colunm Added Alter
+  -----------------------
+  alter table <table_name> add column email varchar(250);
+  -----
+  ----
+
+   
 
 
 
